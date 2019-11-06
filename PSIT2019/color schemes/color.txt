@@ -1,0 +1,5 @@
+green	#406C17
+yellow	#E4B434
+red	#BB3327
+purple	#360D15
+black	#090F0F
