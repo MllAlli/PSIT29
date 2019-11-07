@@ -1,31 +1,84 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <title>จองที่นั่ง</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Index</title>
-    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
-    <style>
-      body{
-        background-image: url(img/food.jpg);
-      }
-      cotainer-fluid{
-        background-color: grey;
-      }
-    </style>
-</head>
-<body>
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-2"></div>
-        <div class="col-md-8">
-          <h1 style="text-align: center;">Welcome!</h1>
+    <link href="https://fonts.googleapis.com/css?family=Kanit&display=swap" rel="stylesheet">
 
+</head>
+
+<style>
+    body{
+        background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
+        font-family: 'Kanit', sans-serif;
+      }
+    .dot {
+        height: 25px;
+        width: 25px;
+        background-color: #bbb;
+        border-radius: 50%;
+        display: inline-block;
+      }
+      .parallax {
+        height:70vh;
+        background-color:#FEF2E8;
+      }
+</style>
+
+<body>
+    <div class="container">
+        <!-- Navbar menu !-->
+        <div class="row">
+            <div class="col-md-12">
+              <nav class="navbar navbar-expand-sm bg-transparent navbar-light fixed-top">
+                <!-- Brand/logo -->
+                <a class="navbar-brand" href="#"><h3>Logo</h3></a>
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0"></ul>
+                <!-- Links -->
+                <ul class="navbar-nav justify-content-end my-2 my-sm-0">
+                  <button class="btn btn-secondary bg-transparent text-dark" type="button">QRCODE SCANNER</button>
+                </ul>
+              </nav>
+            </div>
         </div>
-        <div class="col-md-2"></div>
+
+        <!--Jumbotron!-->
+        <div class="row">
+          <div class="col-md-12 text-center" style="padding-top: 20vh; padding-bottom: 10vh">
+            <h1>ที่นั่งโซนอาหาร</h1>
+              <div class="row">
+                <div class="col-md-2 col-2"></div>
+                <div class="col-md-4 col-4">
+                <span class="dot" style="background-color: #5cb85c"></span><h6 class="text-success">ที่นั่งว่าง</h6>
+                </div>
+                <div class="col-md-4 col-4">
+                <span class="dot" style="background-color: #d9534f"></span><h6 class="text-danger">ที่นั่งไม่ว่าง</h6>
+                </div>
+                <div class="col-md-2 col-2"></div>
+              </div>
+              <div class="col-md-2"></div>
+              </div>
+          </div>
+        </div>
+
+        <!-- Parallex !-->
+        <div class="parallax">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-1 col-1"></div>
+              <div class="col-md-6 col-10">
+                <img src="img/dinner-egg-flatlay-54455.jpg" class="img-fluid" style="padding-top: 10vh; padding-bottom: 10vh;">
+              </div>
+              <div class="col-md-1 col-1"></div>
+            </div>
+          </div>
+        </div>
+        <!-- Table Preview!-->
+
     </div>
-</div>
 
 </body>
 </html>
