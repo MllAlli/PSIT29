@@ -26,6 +26,9 @@
         margin: 0.2vh;
         display: inline-block;
       }
+    .dot > * {
+        background-color: transparent;
+    }
     .sqr {
         height: 5.5vh;
         width: 9vh;
@@ -39,17 +42,42 @@
         margin-bottom: 0.8vh;
         display: inline-block;
       }
-    .parallax {
-        height:68vh;
-        background-color:#312F2F;
-      }
     .space {
         margin:5vh;
       }
     .obj-center{
-      text-align: center;
-      margin: auto;
-      padding: 1vh;
+        text-align: center;
+        margin: auto;
+        padding: 1vh;
+      }
+    .text {
+        background-image: linear-gradient(transparent 0%, currentColor 30%, currentColor 70%, transparent 90%);
+      -webkit-background-clip: text;
+        background-clip: text;
+        background-attachment: fixed;
+      }
+    .text > * {
+        color: transparent;
+      }
+    .text-fgreen {
+        color: #5cb85c;
+        background-image: linear-gradient(transparent 0%, currentColor 30%, currentColor 70%, transparent 90%);
+      -webkit-background-clip: text;
+        background-clip: text;
+        background-attachment: fixed;
+      }
+    .text-fgreen > * {
+        color: transparent;
+      }
+    .text-fred {
+        color: #d9534f;
+        background-image: linear-gradient(transparent 0%, currentColor 30%, currentColor 70%, transparent 90%);
+      -webkit-background-clip: text;
+        background-clip: text;
+        background-attachment: fixed;
+      }
+    .text-fred > * {
+        color: transparent;
       }
 </style>
 
@@ -63,7 +91,7 @@
                 <ul class="navbar-nav mr-auto mt-2 mt-lg-0"></ul>
                 <!-- Button -->
                 <ul class="navbar-nav justify-content-end my-2 my-sm-0">
-                  <button class="btn btn-secondary bg-transparent text-dark" type="button">QRCODE SCANNER</button>
+                  <a class="btn btn-outline-dark" href="qrcode_scanner.html" role="button">QRCODE SCANNER</a>
                 </ul>
               </nav>
             </div>
@@ -72,33 +100,21 @@
         <!--Jumbotron-->
         <div class="row">
           <div class="col-md-12 text-center" style="padding-top: 20vh; padding-bottom: 10vh;">
-            <h1>ที่นั่งโซนอาหาร</h1>
+            <div class="text">
+              <h1>ที่นั่งโซนอาหาร</h1>
+            </div>
             <div class="row">
               <div class="col-md-2 col-2"></div>
-              <div class="col-md-4 col-4">
-              <span class="dot" style="background-color: #5cb85c"></span><h6 class="text-success">ที่นั่งว่าง</h6>
+              <div class="col-md-4 col-4 text-fgreen">
+                <span class="dot"></span><h6>ที่นั่งว่าง</h6>
               </div>
-              <div class="col-md-4 col-4">
-              <span class="dot" style="background-color: #d9534f"></span><h6 class="text-danger">ที่นั่งไม่ว่าง</h6>
+              <div class="col-md-4 col-4 text-fred">
+              <span class="dot" style="background-color: #d9534f;"></span><h6>ที่นั่งไม่ว่าง</h6>
               </div>
               <div class="col-md-2 col-2"></div>
             </div>
           </div>
         </div>
-
-        <!-- Parallex
-        <div class="parallax">
-          <div class="container">
-            <div class="row">
-              <div class="col-md-1 col-1"></div>
-              <div class="col-md-6 col-10">
-                <img src="img/dinner-egg-flatlay-54455.jpg" class="img-fluid" style="padding-top: 10vh; padding-bottom: 10vh;">
-              </div>
-              <div class="col-md-1 col-1"></div>
-            </div>
-          </div>
-        </div>
-      -->
 
         <!-- Table Preview!-->
         <div class="container">
@@ -307,7 +323,9 @@
         </div>
 
 
+        <!-- foot -->
+        <div class="container" style="margin: 100px"></div>
+
 </body>
 </html>
-
 

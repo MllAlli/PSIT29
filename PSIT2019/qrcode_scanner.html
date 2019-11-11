@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>จองที่นั่ง | QRCODE SCANNER</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="instascan.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Kanit&display=swap" rel="stylesheet">
+
+</head>
+
+<style>
+    body{
+        background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
+        background-size: cover;
+        background-repeat: repeat;
+        background-attachment: fixed;
+        font-family: 'Kanit', sans-serif;
+      }
+</style>
+
+<body>
+        <video id="preview"></video>
+        <script type="text/javascript">
+          let scanner = new Instascan.Scanner({ video: document.getElementById('preview') });
+          scanner.addListener('scan', function (content) {
+            console.log(content);
+          });
+          Instascan.Camera.getCameras().then(function (cameras) {
+            if (cameras.length > 0) {
+              scanner.start(cameras[0]);
+            } else {
+              console.error('No cameras found.');
+            }
+          }).catch(function (e) {
+            console.error(e);
+          });
+        </script>
+</body>
+
+</html>
