@@ -5,9 +5,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="instascan.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Kanit&display=swap" rel="stylesheet">
+    <script src="./assets/vue.min.js"></script>
 
 </head>
 
@@ -19,25 +18,103 @@
         background-attachment: fixed;
         font-family: 'Kanit', sans-serif;
       }
+    table.table td,
+    table.table th{
+        vertical-align: middle;
+      }
+    #mycanvas{
+        width: 100%;
+        height: 100%;
+        border: solid 2px #CCC; padding: 5px;
+        }
+    #btnScan{
+        background-color: burlywood;
+        }
 </style>
 
 <body>
-        <video id="preview"></video>
-        <script type="text/javascript">
-          let scanner = new Instascan.Scanner({ video: document.getElementById('preview') });
-          scanner.addListener('scan', function (content) {
-            console.log(content);
-          });
-          Instascan.Camera.getCameras().then(function (cameras) {
-            if (cameras.length > 0) {
-              scanner.start(cameras[0]);
-            } else {
-              console.error('No cameras found.');
-            }
-          }).catch(function (e) {
-            console.error(e);
-          });
-        </script>
+  <br>
+  <div class="container" id="app">
+      <div class="row">
+          <!-- Camera QRCode Scan -->
+          <div class="col-3">
+              <div class="card text-center">
+                <canvas id="mycanvas"></canvas>
+                  <div class="card-body" style="text-align: center;">
+                      <h5 class="card-title text-uppercase">QRcode Scanner</h5>
+                      <button class="btn btn-block" id="btnScan">Scan Now</button>
+                      <button class="btn btn-primary btn-block" id="more" type="button" class="close" data-dismiss="alert" aria-label="Close">More Detail</button>
+                  </div>
+              </div>
+          </div>
+
+          <!-- Sign up for reserve-->
+          <div class="col-9">
+              <div class="card">
+                  <div class="card-body">
+                    <form>
+                      <div class="row">
+                        <div class="col">
+                          <div class="form-group">
+                            <label>QRCode</label>
+                            <input class="form-control" type="text" placeholder="QRCode" readonly id="password">
+                          </div>
+                          <div class="form-group">
+                            <label>First Name</label>
+                            <input type="firstname" class="form-control" id="firstname" placeholder="First Name">
+                          </div>
+                          <div class="form-group">
+                            <label>Phone Number</label>
+                            <input type="number" class="form-control" id="phone" placeholder="0xxxxxxxxx">
+                          </div>
+                          <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                        <div class="col">
+                          <div class="form-group">
+                            <label>Time</label>
+                            <input class="form-control" type="time" placeholder="xx : xx" readonly>
+                          </div>
+                          <div class="form-group">
+                            <label>Last Name</label>
+                            <input type="lastname" class="form-control" id="lastname" placeholder="Last Name">
+                          </div>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+  </div>
+
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <!-- <script type="text/javascript" src="/assets/instascan.min.js"></script> -->
+    <script src="/assets/qrcode.js"></script>
+    <script
+      src="https://code.jquery.com/jquery-2.2.4.min.js"
+      integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+      crossorigin="anonymous">
+    </script>
+    <script src="js/jsQR.js"></script>
+    <script src="js/dw-qrscan.js"></script>
+
+  <!-- javascript script-->
+  <script>
+    DWTQR("mycanvas");
+    $("#btnScan").click(function(){
+        dwStartScan();
+    });
+    function dwQRReader(data){
+        $("#txtData").val(data);
+        alert(data);
+    }
+    $("#more").click(function(){
+        alert('Hello world');
+    });
+
+</script>
+
 </body>
 
 </html>

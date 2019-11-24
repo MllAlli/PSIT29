@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>จองที่นั่ง | QRCODE SCANNER</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Kanit&display=swap" rel="stylesheet">
+    <script src="./assets/vue.min.js"></script>
+
+</head>
+
+<style>
+    body{
+        background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
+        background-size: cover;
+        background-repeat: repeat;
+        background-attachment: fixed;
+        font-family: 'Kanit', sans-serif;
+      }
+    table.table td,
+    table.table th{
+        vertical-align: middle;
+    }
+</style>
+
+<body>
+  <br>
+  <div class="container" id="app">
+      <div class="row">
+          <!-- Camera QRCode Scan -->
+          <div class="col-3">
+              <div class="card text-center">
+                  <video id="preview" class="card-img-top"></video>
+                      <div class="card-body">
+                          <h5 class="card-title text-uppercase">QRcode Scanner</h5>
+                          <p class="alert alert-warning">{{ Message }}</p>
+                          <a href="#" class="btn btn-primary btn-block">More Detail</a>
+                      </div>
+              </div>
+          </div>
+
+          <!-- List of QRCode-->
+          <div class="col-9">
+              <div class="card" style="min-height: 340px;">
+                  <div class="card-body">
+                      <h4 class="card-title">
+                        List of QRCode
+                      </h4>
+                      <table class="table table-hover">
+                          <thead>
+                              <tr>
+                                  <th>#</th>
+                                  <th>QRCode</th>
+                                  <th class="text-right">Delete</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              <tr v-for="(item, index) of items">
+                                  <td>{{ index + 1 }}</td>
+                                  <td>{{ item }}</td>
+                                  <td class="text-right">
+                                      <button @click="onDelete(index)" class="btn btn-sm btn-danger">x</button>
+                                  </td>
+                              </tr>
+                          </tbody>
+                      </table>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+  </div>
+
+    <!-- <script type="text/javascript" src="js/bootstrap.min.js"></script> -->
+    <!-- <script type="text/javascript" src="/assets/instascan.min.js"></script> -->
+    <script src="/assets/qrcode.js"></script>
+
+
+  <!-- javascript script-->
+  <script>
+      var vueApp = new Vue({
+          el: '#app',
+          data: {
+              items: [],
+              Message: 'Please scan'
+          },
+          mounted: function () {
+            //   console.log("debugging..")
+            //   this.OnInitialOpenCamera();
+            let scanner = new Instascan.Scanner({ video: document.getElementById('preview') });
+            scanner.addListener('scan', function (content) {
+                console.log(content);
+            });
+            Instascan.Camera.getCameras().then(function (cameras) {
+                if (cameras.length > 0) {
+                scanner.start(cameras[0]);
+                } else {
+                console.error('No cameras found.');
+                }
+            }).catch(function (e) {
+                console.error(e);
+            });
+          },
+          methods: {
+              onDelete: function (index) {
+                  if (!confirm("Do you want to delete this right?")) return;
+                  this.items.splice(index, 1);
+              },
+              OnInitialOpenCamera() {
+                
+              }
+          }
+      });
+  </script>
+
+</body>
+
+</html>
