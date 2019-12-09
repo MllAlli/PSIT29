@@ -1,16 +1,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Countdown Timer</title>
+    <title>จองที่นั่ง | COUNTDOWN TIMER</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
         <script type="text/javascript" src="js/bootstrap.min.js"></script>
         <link href="https://fonts.googleapis.com/css?family=Kanit&display=swap" rel="stylesheet">
 </head>
+<style>
+  body{
+        background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
+        background-size: cover;
+        background-repeat: repeat;
+        background-attachment: fixed;
+        font-family: 'Kanit', sans-serif;
+      }
+</style>
 <body>
     <div class="container">
-      <div class="row justify-content-center mt-5 mb-2">
+      <div class="row justify-content-center mt-5 mb-2" style="padding-top: 15vh;">
         <h1>YOUR SEAT</h1>
       </div>
       <div class="row justify-content-center mt-5 mb-2">
@@ -18,8 +27,10 @@
         <p></p>
         <div class="col-lg-6 col-md-12 d-flex justify-content-center" id=""><h3>Seat :</h3></div>
       </div>
-      <div class="row justify-content-center mt-4">
-        <div class="col-lg-7 d-flex justify-content-center form-control" style="font-size: 40px" id="countdown"></div>
+      <div class="container-fluid">
+        <div class="row justify-content-center mt-4">
+          <div class="col-lg-7 d-flex justify-content-center form-control bg-success text-white" style="font-size: 60px" id="countdown"></div>
+        </div>
       </div>
     </div>
 
@@ -32,8 +43,6 @@
 
         var currentDate = new Date().getTime(); //same thing as above
         var timeLeft = yourDateToGo - currentDate; //difference between time you set and now in miliseconds
-        var days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-        if (days < 10) days="0"+days;
         var hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)); //conversion miliseconds on hours
         if (hours < 10) hours="0"+hours;
         var minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60)); //conversion miliseconds on minutes
@@ -41,7 +50,7 @@
         var seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);//conversion miliseconds on seconds
         if (seconds < 10) seconds="0"+seconds;
 
-        document.getElementById("countdown").innerHTML = days + " : " + hours + " : " + minutes + " : " + seconds; // putting number of days, hours, minutes and seconds in div,
+        document.getElementById("countdown").innerHTML = hours + " : " + minutes + " : " + seconds; // putting number of days, hours, minutes and seconds in div,
         //which id is countdown
 
         if (timeLeft <= 0) {
