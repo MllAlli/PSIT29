@@ -2,15 +2,11 @@
 <html>
 <head>
     <title>Countdown Timer</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Kanit&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.0/css/bootstrap.min.css" integrity="sha384-SI27wrMjH3ZZ89r4o+fGIJtnzkAnFs3E4qz9DIYioCQ5l9Rd/7UAa8DHcaL8jkWt" crossorigin="anonymous">
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.0/js/bootstrap.min.js" integrity="sha384-3qaqj0lc6sV/qpzrc1N5DC6i1VRn/HyX4qdPaiEFbn54VjQBEU341pvjz7Dv3n6P" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+        <script type="text/javascript" src="js/bootstrap.min.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Kanit&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="container">
@@ -23,7 +19,7 @@
         <div class="col-lg-6 col-md-12 d-flex justify-content-center" id=""><h3>Seat :</h3></div>
       </div>
       <div class="row justify-content-center mt-4">
-        <div class="col-lg-7 d-flex justify-content-center border rounded-pill" style="font-size: 40px" id="countdown"></div>
+        <div class="col-lg-7 d-flex justify-content-center form-control" style="font-size: 40px" id="countdown"></div>
       </div>
     </div>
 
@@ -36,7 +32,7 @@
 
         var currentDate = new Date().getTime(); //same thing as above
         var timeLeft = yourDateToGo - currentDate; //difference between time you set and now in miliseconds
-
+        var days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
         var hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)); //conversion miliseconds on hours
         if (hours < 10) hours="0"+hours;
         var minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60)); //conversion miliseconds on minutes
@@ -44,7 +40,7 @@
         var seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);//conversion miliseconds on seconds
         if (seconds < 10) seconds="0"+seconds;
 
-        document.getElementById("countdown").innerHTML = hours + " : " + minutes + " : " + seconds; // putting number of days, hours, minutes and seconds in div,
+        document.getElementById("countdown").innerHTML = days + ":" + hours + " : " + minutes + " : " + seconds; // putting number of days, hours, minutes and seconds in div,
         //which id is countdown
 
         if (timeLeft <= 0) {
