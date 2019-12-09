@@ -33,6 +33,7 @@
         var currentDate = new Date().getTime(); //same thing as above
         var timeLeft = yourDateToGo - currentDate; //difference between time you set and now in miliseconds
         var days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+        if (days < 10) days="0"+days;
         var hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)); //conversion miliseconds on hours
         if (hours < 10) hours="0"+hours;
         var minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60)); //conversion miliseconds on minutes
@@ -40,7 +41,7 @@
         var seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);//conversion miliseconds on seconds
         if (seconds < 10) seconds="0"+seconds;
 
-        document.getElementById("countdown").innerHTML = days + ":" + hours + " : " + minutes + " : " + seconds; // putting number of days, hours, minutes and seconds in div,
+        document.getElementById("countdown").innerHTML = days + " : " + hours + " : " + minutes + " : " + seconds; // putting number of days, hours, minutes and seconds in div,
         //which id is countdown
 
         if (timeLeft <= 0) {
