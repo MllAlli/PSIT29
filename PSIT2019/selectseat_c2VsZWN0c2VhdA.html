@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>จองที่นั่ง</title>
+    <title>จองที่นั่ง | SELECT YOUR SEAT</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
@@ -20,13 +20,32 @@
     .dot {
         height: 4vh;
         width: 4vh;
-        background-color: #5cb85c;
+        background-color:#5cb85c;
+        color: seashell;
+        border-radius: 50%;
+        margin: 0.2vh;
+        display: inline-block;
+      }
+    .dot1 {
+        height: 4vh;
+        width: 4vh;
+        background-color:#5cb85c;
+        color: seashell;
+        border-radius: 50%;
+        margin: 0.2vh;
+        display: inline-block;
+      }
+    .dot2 {
+        height: 4vh;
+        width: 4vh;
+        background-color: #d9534f;
+        color: seashell;
         border-radius: 50%;
         margin: 0.2vh;
         display: inline-block;
       }
     .dot > * {
-        background-color: transparent;
+        background-color: ;
     }
     .sqr {
         height: 5.5vh;
@@ -81,22 +100,7 @@
 </style>
 
 <body>
-        <!-- Navbar menu !-->
-        <div class="row">
-            <div class="col-md-12">
-              <nav class="navbar navbar-expand-sm bg-transparent navbar-light fixed-top">
-                <!-- Brand/logo -->
-                <a class="navbar-brand" href="#"><h3>Logo</h3></a>
-                <ul class="navbar-nav mr-auto mt-2 mt-lg-0"></ul>
-                <!-- Button -->
-                <ul class="navbar-nav justify-content-end my-2 my-sm-0">
-                  <a class="btn btn-outline-dark" href="qrcode_scanner.html" role="button">QRCODE SCANNER</a>
-                </ul>
-              </nav>
-            </div>
-        </div>
-
-        <!--Jumbotron-->
+    <!--Jumbotron-->
         <div class="row">
           <div class="col-md-12 text-center" style="padding-top: 20vh; padding-bottom: 10vh;">
             <div class="text">
@@ -105,10 +109,10 @@
             <div class="row">
               <div class="col-md-2 col-2"></div>
               <div class="col-md-4 col-4 text-fgreen">
-                <span class="dot"></span><h6>ที่นั่งว่าง</h6>
+                <span class="dot1"></span><h6>ที่นั่งว่าง</h6>
               </div>
               <div class="col-md-4 col-4 text-fred">
-              <span class="dot" style="background-color: #d9534f;"></span><h6>ที่นั่งไม่ว่าง</h6>
+              <span class="dot2"></span><h6>ที่นั่งไม่ว่าง</h6>
               </div>
               <div class="col-md-2 col-2"></div>
             </div>
@@ -123,15 +127,15 @@
           <div class="col-3">
             <div class="row">
               <div class="obj-center">
-              <span class="dot"></span>
-              <span class="dot"></span>
+              <span class="dot">1</span>
+              <span class="dot">2</span>
               </div>
             </div>
               <span class="sqr obj-center">A1</span>
             <div class="row">
               <div class="obj-center">
-              <span class="dot"></span>
-              <span class="dot"></span>
+              <span class="dot">3</span>
+              <span class="dot">4</span>
               </div>
             </div>
 
@@ -139,15 +143,15 @@
 
             <div class="row">
               <div class="obj-center">
-              <span class="dot"></span>
-              <span class="dot"></span>
+              <span class="dot">1</span>
+              <span class="dot">2</span>
               </div>
             </div>
               <span class="sqr obj-center">A2</span>
             <div class="row">
               <div class="obj-center">
-              <span class="dot"></span>
-              <span class="dot"></span>
+              <span class="dot">3</span>
+              <span class="dot">4</span>
               </div>
             </div>
 
@@ -155,15 +159,15 @@
 
             <div class="row">
               <div class="obj-center">
-              <span class="dot"></span>
-              <span class="dot"></span>
+              <span class="dot">1</span>
+              <span class="dot">2</span>
               </div>
             </div>
               <span class="sqr obj-center">A3</span>
             <div class="row">
               <div class="obj-center">
-              <span class="dot"></span>
-              <span class="dot"></span>
+              <span class="dot">3</span>
+              <span class="dot">4</span>
               </div>
             </div>
           </div>
@@ -172,15 +176,15 @@
           <div class="col-3">
               <div class="row">
                 <div class="obj-center">
-                <span class="dot"></span>
-                <span class="dot"></span>
+                <span class="dot">1</span>
+                <span class="dot">2</span>
                 </div>
               </div>
                 <span class="sqr obj-center">B1</span>
               <div class="row">
                 <div class="obj-center">
-                <span class="dot"></span>
-                <span class="dot"></span>
+                <span class="dot">3</span>
+                <span class="dot">4</span>
                 </div>
               </div>
 
@@ -188,15 +192,15 @@
 
               <div class="row">
                 <div class="obj-center">
-                <span class="dot"></span>
-                <span class="dot"></span>
+                <span class="dot">1</span>
+                <span class="dot">2</span>
                 </div>
               </div>
                 <span class="sqr obj-center">B2</span>
               <div class="row">
                 <div class="obj-center">
-                <span class="dot"></span>
-                <span class="dot"></span>
+                <span class="dot">3</span>
+                <span class="dot">4</span>
                 </div>
               </div>
 
@@ -205,15 +209,15 @@
 
               <div class="row">
                 <div class="obj-center">
-                <span class="dot"></span>
-                <span class="dot"></span>
+                <span class="dot">1</span>
+                <span class="dot">2</span>
                 </div>
               </div>
                 <span class="sqr obj-center">B3</span>
               <div class="row">
                 <div class="obj-center">
-                <span class="dot"></span>
-                <span class="dot"></span>
+                <span class="dot">3</span>
+                <span class="dot">4</span>
                 </div>
               </div>
           </div>
@@ -222,15 +226,15 @@
           <div class="col-3">
               <div class="row">
                 <div class="obj-center">
-                <span class="dot"></span>
-                <span class="dot"></span>
+                <span class="dot">1</span>
+                <span class="dot">2</span>
                 </div>
               </div>
                 <span class="sqr obj-center">C1</span>
               <div class="row">
                 <div class="obj-center">
-                <span class="dot"></span>
-                <span class="dot"></span>
+                <span class="dot">3</span>
+                <span class="dot">4</span>
                 </div>
               </div>
 
@@ -238,15 +242,15 @@
 
               <div class="row">
                 <div class="obj-center">
-                <span class="dot"></span>
-                <span class="dot"></span>
+                <span class="dot">1</span>
+                <span class="dot">2</span>
                 </div>
               </div>
                 <span class="sqr obj-center">C2</span>
               <div class="row">
                 <div class="obj-center">
-                <span class="dot"></span>
-                <span class="dot"></span>
+                <span class="dot">3</span>
+                <span class="dot">4</span>
                 </div>
               </div>
 
@@ -255,15 +259,15 @@
 
               <div class="row">
                 <div class="obj-center">
-                <span class="dot"></span>
-                <span class="dot"></span>
+                <span class="dot">1</span>
+                <span class="dot">2</span>
                 </div>
               </div>
                 <span class="sqr obj-center">C3</span>
               <div class="row">
                 <div class="obj-center">
-                <span class="dot"></span>
-                <span class="dot"></span>
+                <span class="dot">3</span>
+                <span class="dot">4</span>
                 </div>
               </div>
           </div>
@@ -272,15 +276,15 @@
           <div class="col-3">
               <div class="row">
                 <div class="obj-center">
-                <span class="dot"></span>
-                <span class="dot"></span>
+                <span class="dot">1</span>
+                <span class="dot">2</span>
                 </div>
               </div>
                 <span class="sqr obj-center">D1</span>
               <div class="row">
                 <div class="obj-center">
-                <span class="dot"></span>
-                <span class="dot"></span>
+                <span class="dot">3</span>
+                <span class="dot">4</span>
                 </div>
               </div>
 
@@ -288,15 +292,15 @@
 
               <div class="row">
                 <div class="obj-center">
-                <span class="dot"></span>
-                <span class="dot"></span>
+                <span class="dot">1</span>
+                <span class="dot">2</span>
                 </div>
               </div>
                 <span class="sqr obj-center">D2</span>
               <div class="row">
                 <div class="obj-center">
-                <span class="dot"></span>
-                <span class="dot"></span>
+                <span class="dot">3</span>
+                <span class="dot">4</span>
                 </div>
               </div>
 
@@ -304,15 +308,15 @@
 
               <div class="row">
                 <div class="obj-center">
-                <span class="dot"></span>
-                <span class="dot"></span>
+                <span class="dot">1</span>
+                <span class="dot">2</span>
                 </div>
               </div>
                 <span class="sqr obj-center">D3</span>
               <div class="row">
                 <div class="obj-center">
-                <span class="dot"></span>
-                <span class="dot"></span>
+                <span class="dot">3</span>
+                <span class="dot">4</span>
                 </div>
               </div>
           </div>
@@ -320,14 +324,92 @@
 
           </div>
         </div>
+        <br><br><br>
 
-        <!-- Footer -->
-        <br><br>
-        <footer class="footer text-center">
-            <p>Problem Solving in Information Technology 2019</p>  
-        </footer>
-        <!-- Footer -->
+        <!-- Sign up for reserve-->
+        <div class="container">
+          <div class="col-12">
+              <div class="card" style="background-color: transparent;">
+                  <div class="card-body">
+                    <form>
+                          <div class="form-row">
+                            <div class="col-12 col-md-6">
+                              <label>QRCode</label>
+                              <input class="form-control" type="text" placeholder="QRCode" readonly id="password">
+                            </div>
+                            <div class="col-md-6 col-12">
+                              <label>Time</label>
+                              <input class="form-control" type="time" placeholder="xx : xx" readonly>
+                            </div>
+                          </div>
+                          <div class="form-row">
+                            <div class="col-12 col-md-6">
+                                <label>First Name</label>
+                                <input type="firstname" class="form-control" id="firstname" placeholder="First Name">
+                            </div>
+                            <div class="col-md-6 col-12">
+                                <label>Last Name</label>
+                                <input type="lastname" class="form-control" id="lastname" placeholder="Last Name">
+                            </div>
+                          </div>
+                          <div class="form-row">
+                            <div class="col-12 col-md-6">
+                                <label>Phone Number</label>
+                                <input type="text" class="form-control" id="phone" placeholder="0xxxxxxxxx">
+                            </div>
+                            <div class="col-md-6 col-12">
+                                <label>Time</label>
+                                <select class="form-control form-control">
+                                  <option>1 hr</option>
+                                  <option>2 hr</option>
+                                  <option>3 hr</option>
+                                </select>
+                            </div>
+                          </div>
+                          <div class="form-row">
+                              <div class="col-12 col-md-6">
+                                  <label>Table</label>
+                                  <select class="form-control form-control">
+                                    <option>A1</option>
+                                    <option>A2</option>
+                                    <option>A3</option>
+                                    <option>B1</option>
+                                    <option>B2</option>
+                                    <option>B3</option>
+                                    <option>C1</option>
+                                    <option>C2</option>
+                                    <option>C3</option>
+                                    <option>D1</option>
+                                    <option>D2</option>
+                                    <option>D3</option>
+                                  </select>
+                              </div>
+                              <div class="col-md-6 col-12">
+                                  <label>Seat</label>
+                                  <select class="form-control form-control">
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>3</option>
+                                  </select>
+                              </div>
+                            </div>
+                            <br>
+                          <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+              </div>
+          </div>
+        </div>
+
+  <!-- Footer -->
+  <br><br>
+    <footer class="footer text-center">
+      <p>Problem Solving in Information Technology 2019</p>  
+  </footer>
+  <!-- Footer -->
 
 </body>
 </html>
-
