@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>จองที่นั่ง | QRCODE SCANNER</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Kanit&display=swap" rel="stylesheet">
+    <script src="./assets/vue.min.js"></script>
+
+</head>
+
+<style>
+    body{
+        background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
+        background-size: cover;
+        background-repeat: repeat;
+        background-attachment: fixed;
+        font-family: 'Kanit', sans-serif;
+      }
+    table.table td,
+    table.table th{
+        vertical-align: middle;
+      }
+    #mycanvas{
+        width: 100%;
+        height: 100%;
+        border: solid 2px #CCC; padding: 5px;
+        }
+    #btnScan{
+        background-color: burlywood;
+        }
+</style>
+
+<body>
+  <br>
+  <div class="container-fluid" id="app">
+      <div class="row justify-content-center">
+          <!-- Camera QRCode Scan -->
+          <div class="col-md-2"></div>
+            <div class="col-md-6">
+              <div class="card text-center">
+                <canvas id="mycanvas"></canvas>
+                  <div class="card-body" style="text-align: center;">
+                      <h5 class="card-title text-uppercase">QRcode Scanner</h5>
+                      <button class="btn btn-block" id="btnScan">Scan Now</button>
+                      <button class="btn btn-primary btn-block" id="more" type="button" class="close" data-dismiss="alert" aria-label="Close">More Detail</button>
+                  </div>
+              </div>
+            </div>
+          <div class="col-md-2"></div>
+      </div>
+
+  </div>
+
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <!-- <script type="text/javascript" src="/assets/instascan.min.js"></script> -->
+    <script src="/assets/qrcode.js"></script>
+    <script
+      src="https://code.jquery.com/jquery-2.2.4.min.js"
+      integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+      crossorigin="anonymous">
+    </script>
+    <script src="js/jsQR.js"></script>
+    <script src="js/dw-qrscan.js"></script>
+
+  <!-- javascript script-->
+  <script>
+    DWTQR("mycanvas");
+    $("#btnScan").click(function(){
+        dwStartScan();
+    });
+    function dwQRReader(data){
+        $("#txtData").val(data);
+        location.replace("selectseat_c2VsZWN0c2VhdA.html")
+    }
+    $("#more").click(function(){
+        alert('Hello world');
+    });
+
+</script>
+
+</body>
+
+</html>
