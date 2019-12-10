@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Testing</title>
+</head>
+<body>
+    <p id = "demo">
+    </p>
+
+<script>
+    n = new Date()
+    now_hour = n.getHours();
+    now_minutes = n.getMinutes();
+    if (now_minutes < 10) {
+        document.getElementById("demo").innerHTML = now_hour + ":0" + now_minutes;
+    } else {
+        document.getElementById("demo").innerHTML = now_hour +":" + now_minutes;
+    }
+</script>
+</body>
+</html>
