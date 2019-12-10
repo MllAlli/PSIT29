@@ -349,17 +349,17 @@
                             </div>
                             <div class="col-md-6 col-12">
                                 <label>Time</label>
-                                <select class="form-control form-control">
-                                  <option>1 hr</option>
-                                  <option>2 hr</option>
-                                  <option>3 hr</option>
+                                <select class="form-control form-control" id="hour">
+                                  <option value="1">1 hr</option>
+                                  <option value="2">2 hr</option>
+                                  <option value="3">3 hr</option>
                                 </select>
                             </div>
                           </div>
                           <div class="form-row">
                               <div class="col-12 col-md-6">
                                   <label>Table</label>
-                                  <select class="form-control form-control">
+                                  <select class="form-control form-control" id="table">
                                     <option>A1</option>
                                     <option>A2</option>
                                     <option>A3</option>
@@ -376,7 +376,7 @@
                               </div>
                               <div class="col-md-6 col-12">
                                   <label>Seat</label>
-                                  <select class="form-control form-control">
+                                  <select class="form-control form-control" id="seat">
                                     <option>1</option>
                                     <option>2</option>
                                     <option>3</option>
@@ -385,7 +385,7 @@
                               </div>
                             </div>
                             <br>
-                          <button type="submit" class="btn btn-primary" id="submit">Submit</button>
+                          <a type="submit" class="btn btn-primary" id="submit" href="timer.html">Submit</a>
                         </div>
                       </div>
                     </form>
@@ -400,10 +400,60 @@
       <p>Problem Solving in Information Technology 2019</p>
   </footer>
   <!-- Footer -->
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.2.3/firebase.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/7.5.2/firebase-analytics.js"></script>
+
 <script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyApl3QXQZ32x75rxGbfPfUG0DKW6JRSqnQ",
+    authDomain: "psit2019-t1.firebaseapp.com",
+    databaseURL: "https://psit2019-t1.firebaseio.com",
+    projectId: "psit2019-t1",
+    storageBucket: "psit2019-t1.appspot.com",
+    messagingSenderId: "412001566845",
+    appId: "1:412001566845:web:d6ff242f423865da77f114",
+    measurementId: "G-M10FK23Q84"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+</script>
+<script>
+  let x = new Date();
+  let myFirebase = firebase.database();
+  let dataRef = myFirebase.ref('/listofuser');
+
   document.getElementById("submit").onclick = function() {
-    let 
-  }
+    let hoursce = document.getElementById("hour");
+    let strhour = hoursce.options[hoursce.selectedIndex].value;
+    let inthour = parseInt(strhour, 10);
+    let lfirstname = document.getElementById("firstname").value;
+    let llastname = document.getElementById("lastname").value;
+    let lphone = document.getElementById("phone").value;
+    let tablesce = document.getElementById("table");
+    let strtable = tablesce.options[tablesce.selectedIndex].text;
+    let seatsce = document.getElementById("seat");
+    let strseat = seatsce.options[seatsce.selectedIndex].text;
+    let nhour = x.getHours();
+    let nminute = x.getMinutes();
+    dataRef.push({
+      firstname: lfirstname,
+      lastname: llastname,
+      phone: lphone,
+      want_hour: inthour,
+      table: strtable,
+      seat: strseat,
+      hour: nhour,
+      miunte: nminute
+    });
+
+
+  };
 </script>
 </body>
 </html>

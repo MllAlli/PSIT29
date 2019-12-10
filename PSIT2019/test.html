@@ -1,24 +1,133 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Testing</title>
+    <title>จองที่นั่ง | QRCODE SCANNER</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Kanit&display=swap" rel="stylesheet">
+    <script src="./assets/vue.min.js"></script>
+
 </head>
+
+<style>
+    body{
+        background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
+        background-size: cover;
+        background-repeat: repeat;
+        background-attachment: fixed;
+        font-family: 'Kanit', sans-serif;
+      }
+    table.table td,
+    table.table th{
+        vertical-align: middle;
+      }
+    #mycanvas{
+        width: 100%;
+        height: 100%;
+        border: solid 2px #CCC; padding: 5px;
+        }
+    #btnScan{
+        background-color: burlywood;
+        }
+    footer{
+        position: fixed;
+        left: 0%;
+        bottom: 0%;
+        width: 100%;
+    }
+</style>
+
 <body>
-    <p id = "demo">
-    </p>
+  <br>
+  <div class="container" id="app">
+      <div class="row justify-content-center">
+          <!-- List of QRCode-->
+          <div class="col">
+              <div class="card" style="min-height: 340px;">
+                  <div class="card-body">
+                      <h1 class="card-title">
+                        List of QRCode
+                      </h1>
+                      <table class="table table-hover">
+                          <thead>
+                              <tr>
+                                  <th>Time</th>
+                                  <th>First Name</th>
+                                  <th>Last Name</th>
+                                  <th>Phone Number</th>
+                                  <th>Table</th>
+                                  <th>Seat</th>
+                              </tr>
+                          </thead>
+                          <tbody id="dataRow">
+                          </tbody>
+                      </table>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+  </div>
+
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <!-- <script type="text/javascript" src="/assets/instascan.min.js"></script> -->
+    <script src="/assets/qrcode.js"></script>
+    <script
+      src="https://code.jquery.com/jquery-2.2.4.min.js"
+      integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+      crossorigin="anonymous">
+    </script>
+    <script src="js/jsQR.js"></script>
+    <script src="js/dw-qrscan.js"></script>
+
+  <!-- javascript script-->
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.2.3/firebase.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/7.5.2/firebase-analytics.js"></script>
 
 <script>
-    n = new Date()
-    now_hour = n.getHours();
-    now_minutes = n.getMinutes();
-    if (now_minutes < 10) {
-        document.getElementById("demo").innerHTML = now_hour + ":0" + now_minutes;
-    } else {
-        document.getElementById("demo").innerHTML = now_hour +":" + now_minutes;
-    }
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyApl3QXQZ32x75rxGbfPfUG0DKW6JRSqnQ",
+    authDomain: "psit2019-t1.firebaseapp.com",
+    databaseURL: "https://psit2019-t1.firebaseio.com",
+    projectId: "psit2019-t1",
+    storageBucket: "psit2019-t1.appspot.com",
+    messagingSenderId: "412001566845",
+    appId: "1:412001566845:web:d6ff242f423865da77f114",
+    measurementId: "G-M10FK23Q84"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
 </script>
+<script>
+    let myFirebase = firebase.database();
+    let dataRef = myFirebase.ref('/listofuser');
+    dataRef.limitToLast(100).on('child_added', function(childSnapshot) {
+    let item = childSnapshot.val()
+    var hours = Math.floor((item.timenow % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)); //conversion miliseconds on hours
+        if (hours < 10) hours="0"+hours;
+    var minutes = Math.floor((item.timenow % (1000 * 60 * 60)) / (1000 * 60)); //conversion miliseconds on minutes
+        if (minutes < 10) minutes="0"+minutes;
+    var seconds = Math.floor((item.timenow % (1000 * 60)) / 1000);//conversion miliseconds on seconds
+        if (seconds < 10) seconds="0"+seconds;
+    document.getElementById('dataRow').innerHTML += "<tr><td>" + item.timenow + "</td><td>" +
+    item.firstname + "</td><td>" + item.lastname + "</td><td>" + item.phone + "</td><td>" +
+    item.table + "</td><td>" + hours+":"+minutes + "</td></tr>"    
+});
+    
+</script>
+        <!-- Footer -->
+        <footer class="footer text-center">
+            <p>Problem Solving in Information Technology 2019</p>  
+        </footer>
+        <!-- Footer -->
+
 </body>
+
 </html>
