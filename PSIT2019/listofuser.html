@@ -30,27 +30,34 @@
     #btnScan{
         background-color: burlywood;
         }
+    .footer {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+      }
 </style>
 
 <body>
   <br>
   <div class="container" id="app">
-      <div class="row">
+      <div class="row justify-content-center">
           <!-- List of QRCode-->
-          <div class="col-12">
+          <div class="col">
               <div class="card" style="min-height: 340px;">
                   <div class="card-body">
-                      <h1 class="card-title">
-                        List of QRCode
-                      </h1>
+                      <h4 class="card-title">
+                        List of Users
+                      </h4>
                       <table class="table table-hover">
                           <thead>
                               <tr>
-                                  <th>QRCode</th>
                                   <th>Time</th>
                                   <th>First Name</th>
                                   <th>Last Name</th>
                                   <th>Phone Number</th>
+                                  <th>Table</th>
+                                  <th>Seat</th>
                               </tr>
                           </thead>
                           <tbody id="dataRow">
@@ -62,6 +69,12 @@
       </div>
 
   </div>
+    <!-- Footer -->
+  <br>
+    <footer class="footer text-center">
+      <p>Problem Solving in Information Technology 2019</p>
+    </footer>
+  <!-- Footer -->
 
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <!-- <script type="text/javascript" src="/assets/instascan.min.js"></script> -->
@@ -75,22 +88,9 @@
     <script src="js/dw-qrscan.js"></script>
 
   <!-- javascript script-->
-  <script>
-    DWTQR("mycanvas");
-    $("#btnScan").click(function(){
-        dwStartScan();
-    });
-    function dwQRReader(data){
-        $("#txtData").val(data);
-        alert(data);
-    }
-</script>
+<script>
 
-        <!-- Footer -->
-        <footer class="footer text-center">
-            <p>Problem Solving in Information Technology 2019</p>  
-        </footer>
-        <!-- Footer -->
+</script>
 
 </body>
 
