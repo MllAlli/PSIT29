@@ -441,6 +441,7 @@
     let strseat = seatsce.options[seatsce.selectedIndex].text;
     let nhour = x.getHours();
     let nminute = x.getMinutes();
+    let lnow = x.getTime();
     dataRef.push({
       firstname: lfirstname,
       lastname: llastname,
@@ -449,7 +450,8 @@
       table: strtable,
       seat: strseat,
       hour: nhour,
-      miunte: nminute
+      miunte: nminute,
+      now: lnow
     });
     document.getElementById("submit").href = "timer.html?" + lphone;
 
