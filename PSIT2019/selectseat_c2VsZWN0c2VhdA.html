@@ -385,7 +385,7 @@
                               </div>
                             </div>
                             <br>
-                          <a type="submit" class="btn btn-primary" id="submit" href="timer.html">Submit</a>
+                          <a onclick="return follow();" href="" class="btn btn-primary" id="submit">Submit</a>
                         </div>
                       </div>
                     </form>
@@ -398,7 +398,7 @@
   <br><br>
     <footer class="footer text-center">
       <p>Problem Solving in Information Technology 2019</p>
-  </footer>
+    </footer>
   <!-- Footer -->
 <!-- The core Firebase JS SDK is always required and must be listed first -->
 <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase.js"></script>
@@ -451,6 +451,8 @@
       hour: nhour,
       miunte: nminute
     });
+    document.getElementById("submit").href = "timer.html?" + lphone;
+
 
 
   };
