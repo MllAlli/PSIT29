@@ -33,16 +33,44 @@
         </div>
       </div>
     </div>
+  <!-- javascript script-->
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.2.3/firebase.js"></script>
 
-<script type="text/javascript">    var yourDateToGo = new Date(); //here you're making new Date object
-    yourDateToGo.setDate(yourDateToGo.getDate() + 1); //your're setting date in this object 1 day more from now
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/7.5.2/firebase-analytics.js"></script>
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyApl3QXQZ32x75rxGbfPfUG0DKW6JRSqnQ",
+    authDomain: "psit2019-t1.firebaseapp.com",
+    databaseURL: "https://psit2019-t1.firebaseio.com",
+    projectId: "psit2019-t1",
+    storageBucket: "psit2019-t1.appspot.com",
+    messagingSenderId: "412001566845",
+    appId: "1:412001566845:web:d6ff242f423865da77f114",
+    measurementId: "G-M10FK23Q84"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+</script>
+
+<script type="text/javascript">    
+    let myFirebase = firebase.database();
+  let dataRef = myFirebase.ref('/listofuser');
+  dataRef.limitToLast(100).on('child_added', function(childSnapshot) {
+    let item = childSnapshot.val()
+    let yourDateToGo = new Date(); //here you're making new Date object
+    let limit = yourDateToGo.setHours(item.hour + item.want_hour); //your're setting date in this object 1 day more from now
     //you can change number of days to go by putting any number in place of 1
 
     var timing = setInterval( // you're making an interval - a thing, that is updating content after number of miliseconds, that you're writing after comma as second parameter
       function () {
 
-        var currentDate = new Date().getTime(); //same thing as above
-        var timeLeft = yourDateToGo - currentDate; //difference between time you set and now in miliseconds
+        var timeLeft = limit - item.hour; //difference between time you set and now in miliseconds
         var hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)); //conversion miliseconds on hours
         if (hours < 10) hours="0"+hours;
         var minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60)); //conversion miliseconds on minutes
@@ -59,6 +87,7 @@
           //and you see "It's over" instead of time left
         }
       }, 1000);
+   });
 </script>
 
   <!-- Footer -->
