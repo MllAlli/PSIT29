@@ -424,11 +424,12 @@
   firebase.analytics();
 </script>
 <script>
-  let x = new Date();
+  
   let myFirebase = firebase.database();
   let dataRef = myFirebase.ref('/listofuser');
 
   document.getElementById("submit").onclick = function() {
+    let x = new Date();
     let hoursce = document.getElementById("hour");
     let strhour = hoursce.options[hoursce.selectedIndex].value;
     let inthour = parseInt(strhour, 10);
