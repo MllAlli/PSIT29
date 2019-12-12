@@ -325,30 +325,28 @@
           </div>
         </div>
         <br><br><br>
-
 <!-- Check user sheet-->
-        <div class="container">
-          <div class="col-md-6">
-            <div class="card" style="background-color: transparent;">
-              <div class="card-body">
-                <h3 class="card-title">Check your time</h3>
-                <form>
-                  <div class="form-row">
-                    <label>Your Phone Number</label>
-                  </div>
-                  <div class="form-row">
-                    <input type="Phone Number" class="form-control col-md-12" id="phonelogin" placeholder="Phone Number">
-                  </div><br>
-                  <div class="form-row">
-                    <a href="" class="btn btn-primary" id="check">Submit</a>
-                  </div>
-                </form>
+  <div class="container">
+      <div class="col-md-6">
+        <div class="card" style="background-color: transparent;">
+          <div class="card-body">
+            <h3 class="card-title">Check your time</h3>
+            <form>
+              <div class="form-row">
+                <label>Your Phone Number</label>
               </div>
-            </div>
+              <div class="form-row">
+                <input type="Phone Number" class="form-control col-md-12" id="phonelogin" placeholder="Phone Number">
+              </div><br>
+              <div class="form-row">
+                <a href="" class="btn btn-primary" id="check">Submit</a>
+              </div>
+            </form>
           </div>
         </div>
-        <br>
-
+      </div>
+    </div>
+    <br>
         <!-- Sign up for reserve-->
         <div class="container">
           <div class="col-12">
@@ -408,7 +406,7 @@
                               </div>
                             </div>
                             <br>
-                          <a href="" class="btn btn-primary" id="submit">Submit</a>
+                          <a onclick="return follow();" href="" class="btn btn-primary" id="submit">Submit</a>
                         </div>
                       </div>
                     </form>
@@ -416,7 +414,6 @@
               </div>
           </div>
         </div>
-        <br>
 
   <!-- Footer -->
   <br><br>
@@ -448,9 +445,37 @@
   firebase.analytics();
 </script>
 <script>
+  function checking(seat) {
+      if (seat == 0)  {
+        return "#d9534f";
+      } else {
+        return "#5cb85c"
+      }
+      }
 
   let myFirebase = firebase.database();
   let dataRef = myFirebase.ref('/listofuser');
+  let dataseat = myFirebase.ref('tableandseat/table');
+  dataseat.limitToLast(100).on("value", function(childSnapshot) {
+    let item = childSnapshot.val();
+    console.log(item.A11)
+    var word = ["A", "B", "C", "D"];
+    word.forEach(element => {
+      for (var i = 1; i < 4; i++) {
+        for (var j = 1; j < 5; j++) {
+          let x = element+i+j;
+          document.getElementById(x).style.backgroundColor = checking(eval("item."+x));
+            }
+          }
+        });
+      });
+    
+    dataseat.on("child_changed", function(snapshot){
+        let aaaa = snapshot.key
+        console.log(aaaa);
+           document.getElementById(aaaa).style.backgroundColor = checking(snapshot.val());
+      });
+  
 
   document.getElementById("submit").onclick = function() {
     let x = new Date();
@@ -478,15 +503,20 @@
       miunte: nminute,
       now: lnow
     });
+    dataseat.update({
+      strseat: 0
+    })
     document.getElementById("submit").href = "timer.html?" + lphone;
+
+
 
   };
   document.getElementById("check").onclick = function(){
     let num = document.getElementById("phonelogin").value;
     document.getElementById("check").href = "timer.html?" + num;
   };
-
 </script>
+
 </body>
 </html>
 

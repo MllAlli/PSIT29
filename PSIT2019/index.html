@@ -328,7 +328,62 @@
             <p>Problem Solving in Information Technology 2019</p>  
         </footer>
         <!-- Footer -->
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.2.3/firebase.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/7.5.2/firebase-analytics.js"></script>
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyApl3QXQZ32x75rxGbfPfUG0DKW6JRSqnQ",
+    authDomain: "psit2019-t1.firebaseapp.com",
+    databaseURL: "https://psit2019-t1.firebaseio.com",
+    projectId: "psit2019-t1",
+    storageBucket: "psit2019-t1.appspot.com",
+    messagingSenderId: "412001566845",
+    appId: "1:412001566845:web:d6ff242f423865da77f114",
+    measurementId: "G-M10FK23Q84"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+</script>
+<script>
+      function checking(seat) {
+      if (seat == 0)  {
+        return "#d9534f";
+      } else {
+        return "#5cb85c"
+      }
+      }
+    let myFirebase = firebase.database();
+    let dataRef = myFirebase.ref('/tableandseat');
+    let dataseat = myFirebase.ref('/tableandseat/table');
+    dataRef.limitToLast(100).on('child_added', function(childSnapshot) {
+    let item = childSnapshot.val();
+    console.log(item)
+    
+    var word = ["A", "B", "C", "D"];
+    word.forEach(element => {
+      for (var i = 1; i < 4; i++) {
+        for (var j = 1; j < 5; j++) {
+          let x = element+i+j;
+          document.getElementById(x).style.backgroundColor = checking(eval("item."+x));
+          }
+      }
+    });
+    });
+    
+    dataseat.on("child_changed", function(snapshot){
+        let aaaa = snapshot.key
+        console.log(aaaa);
+           document.getElementById(aaaa).style.backgroundColor = checking(snapshot.val());
+  });
+    
+</script>
 
 </body>
 </html>
-
