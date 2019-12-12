@@ -458,7 +458,6 @@
   let dataseat = myFirebase.ref('tableandseat/table');
   dataseat.limitToLast(100).on("value", function(childSnapshot) {
     let item = childSnapshot.val();
-    console.log(item.A11)
     var word = ["A", "B", "C", "D"];
     word.forEach(element => {
       for (var i = 1; i < 4; i++) {
@@ -492,6 +491,7 @@
     let nhour = x.getHours();
     let nminute = x.getMinutes();
     let lnow = x.getTime();
+    let idtable = strtable + strseat
     dataRef.push({
       firstname: lfirstname,
       lastname: llastname,
@@ -504,7 +504,7 @@
       now: lnow
     });
     dataseat.update({
-      strseat: 0
+      [idtable]: 0
     })
     document.getElementById("submit").href = "timer.html?" + lphone;
 

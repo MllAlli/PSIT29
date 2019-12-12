@@ -69,6 +69,7 @@
     let userlink = location.href.split("?")[1];
     let myFirebase = firebase.database();
     let dataRef = myFirebase.ref('listofuser');
+    let dataseat = myFirebase.ref('tableandseat/table');
     let submit = 0
     let want = 0
     dataRef.orderByChild('phone').equalTo(userlink).on("value", function(snapshot){
@@ -113,6 +114,16 @@
           clearInterval(timing);
           document.getElementById("countdown").innerHTML = "Time's up";
           document.getElementById("countdown").className = "out col-lg-7 d-flex text-white justify-content-center form-control"; //if there's no time left, programm in this 2 lines is clearing interval (nothing is counting now)
+          dataRef.orderByChild('phone').equalTo(userlink).on("value", function(snapshot){
+          snapshot.forEach(function(childSnapshot){
+            var childData = childSnapshot.val();
+            let idtable = childData.table + childData.seat
+            dataseat.update({
+              [idtable]: 1
+            });
+
+      });
+      });
           //and you see "Time's up" instead of time left
         }
       }, 1000);
