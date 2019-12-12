@@ -37,6 +37,33 @@
       </div>
     </div>
 
+<script>
+    var yourDateToGo = new Date(); //here you're making new Date object
+    yourDateToGo.setDate(yourDateToGo.getDate() + 1); //your're setting date in this object 1 day more from now
+    //you can change number of days to go by putting any number in place of 1
+
+    var timing = setInterval( // you're making an interval - a thing, that is updating content after number of miliseconds, that you're writing after comma as second parameter
+      function () {
+
+        var currentDate = new Date().getTime(); //same thing as above
+        var timeLeft = yourDateToGo - currentDate; //difference between time you set and now in miliseconds
+        var hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)); //conversion miliseconds on hours
+        if (hours < 10) hours="0"+hours;
+        var minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60)); //conversion miliseconds on minutes
+        if (minutes < 10) minutes="0"+minutes;
+        var seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);//conversion miliseconds on seconds
+        if (seconds < 10) seconds="0"+seconds;
+
+        document.getElementById("countdown").innerHTML = hours + " : " + minutes + " : " + seconds; // putting number of days, hours, minutes and seconds in div,
+        //which id is countdown
+
+        if (timeLeft <= 0) {
+          clearInterval(timing);
+          document.getElementById("countdown").innerHTML = "It's over"; //if there's no time left, programm in this 2 lines is clearing interval (nothing is counting now)
+          //and you see "It's over" instead of time left
+        }
+      }, 1000);
+</script>
 
 <!-- javascript script-->
 <!-- The core Firebase JS SDK is always required and must be listed first -->
@@ -66,55 +93,15 @@
     let userlink = location.href.split("?")[1];
     let myFirebase = firebase.database();
     let dataRef = myFirebase.ref('listofuser');
-    let submit = 0
-    let want = 0
     dataRef.orderByChild('phone').equalTo(userlink).on("value", function(snapshot){
       snapshot.forEach(function(childSnapshot){
         var childData = childSnapshot.val();
         document.getElementById('table').innerHTML = childData.table
         document.getElementById('seat').innerHTML = childData.seat
-        want = childData.want_hour
-        submit = childData.now
-        
       });
-      let a = new Array();
-          a[1] = 3600000;
-          a[2] = 7200000;
-          a[3] = 10800000;
-
-      var yourDateToGo = new Date(); //here you're making new Date object
-      var i = submit + a[want]; //your're setting date in this object 1 day more from now
-    //you can change number of days to go by putting any number in place of 1
-                                      //var no = new Date();
-                                      //var future_1 = no.setHours(17);
-    // how to find diff time          //var past = no.setHours(14);
-                                      //var dif = future_1 - past
-                                      //console.log(dif);
-
-    var timing = setInterval( // you're making an interval - a thing, that is updating content after number of miliseconds, that you're writing after comma as second parameter
-      function () {
-        var currentDate = new Date().getTime(); //same thing as above
-        var diff = currentDate - submit;
-        var timeLeft = i - (diff + submit); //difference between time you set and now in miliseconds
-        console.log(timeLeft, i, diff, submit, currentDate)
-        var hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)); //conversion miliseconds on hours
-        if (hours < 10) hours="0"+hours;
-        var minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60)); //conversion miliseconds on minutes
-        if (minutes < 10) minutes="0"+minutes;
-        var seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);//conversion miliseconds on seconds
-        if (seconds < 10) seconds="0"+seconds;
-
-        document.getElementById("countdown").innerHTML = hours + " : " + minutes + " : " + seconds; // putting number of days, hours, minutes and seconds in div,
-        //which id is countdown
-        if (timeLeft <= 0) {
-          clearInterval(timing);
-          document.getElementById("countdown").innerHTML = "It's over"; //if there's no time left, programm in this 2 lines is clearing interval (nothing is counting now)
-          //and you see "It's over" instead of time left
-        }
-      }, 1000);
-      
 
 });
+
 </script>
 
   <!-- Footer -->
