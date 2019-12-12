@@ -5,8 +5,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css?family=Kanit&display=swap" rel="stylesheet">
-    <script src="./assets/vue.min.js"></script>
 
 </head>
 
@@ -18,10 +21,6 @@
         background-attachment: fixed;
         font-family: 'Kanit', sans-serif;
       }
-    table.table td,
-    table.table th{
-        vertical-align: middle;
-      }
     #mycanvas{
         width: 100%;
         height: 100%;
@@ -30,6 +29,9 @@
     #btnScan{
         background-color: burlywood;
         }
+    #collapse{
+      display: none;
+      }
 </style>
 
 <body>
@@ -43,8 +45,22 @@
                 <canvas id="mycanvas"></canvas>
                   <div class="card-body" style="text-align: center;">
                       <h5 class="card-title text-uppercase">QRcode Scanner</h5>
-                      <button class="btn btn-block" id="btnScan">Scan Now</button>
-                      <button class="btn btn-primary btn-block" id="more" type="button" class="close" data-dismiss="alert" aria-label="Close">More Detail</button>
+                      <button class="btn btn-block" id="btnScan">Scan Now
+                      </button>
+                      <button type="button" class="btn btn-primary btn-block" data-toggle="collapse" data-target="#details">More Detail</button>
+                      <div id="details" class="collapse"><br>
+                          <div class="card card-body" style="text-align: left;">
+                            1. คลิก Scan Now เพื่อเปิดกล้อง<br>
+                            2. กรอกข้อมูลของท่าน เลือกที่นั่งและเวลา<br>
+                            3. กดยืนยันเพื่อแสดงผลเวลาของท่าน<br>
+                            *หากกรอกฟอร์มแล้วไม่มีการแสดงผลเวลา สามารถกรอกเบอร์โทรศัพท์เพื่อแสดงผลหน้าเวลาของท่านได้
+                            <hr>
+                            1. Click 'Scan Now' for open your camera.<br>
+                            2. Fill out the form, choose your seat and set your time.<br>
+                            3. Click 'Submit' for show your time page.<br>
+                            *If you fill out the form but can't see your time page. You can fill out your phone number for show your time page.
+                          </div>
+                      </div>
                   </div>
               </div>
             </div>
@@ -63,6 +79,8 @@
     </script>
     <script src="js/jsQR.js"></script>
     <script src="js/dw-qrscan.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
   <!-- javascript script-->
   <script>
@@ -73,12 +91,15 @@
     function dwQRReader(data){
         $("#txtData").val(data);
         location.replace("selectseat_c2VsZWN0c2VhdA.html")
-    }
-    $("#more").click(function(){
-        alert('Hello world');
-    });
+    };
 
 </script>
+  <br>
+  <!-- Footer -->
+  <footer class="footer text-center">
+      <p>Problem Solving in Information Technology 2019</p>
+  </footer>
+  <!-- Footer -->
 
 </body>
 
