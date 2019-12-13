@@ -21,6 +21,7 @@
   }
 </style>
 <body>
+  <!-- countdown -->
     <div class="container">
       <div class="row justify-content-center mt-5 mb-2" style="padding-top: 15vh;">
         <h1>YOUR SEAT</h1>
@@ -72,6 +73,7 @@
     let dataseat = myFirebase.ref('tableandseat/table');
     let submit = 0
     let want = 0
+    //show table and seat
     dataRef.orderByChild('phone').equalTo(userlink).on("value", function(snapshot){
       snapshot.forEach(function(childSnapshot){
         var childData = childSnapshot.val();
@@ -81,26 +83,26 @@
         submit = childData.now
 
       });
+
+      //time
       let a = new Array();
-          a[1] = 3600000;
-          a[2] = 7200000;
-          a[3] = 10800000;
+          a[1] = 3600000; //1 hr
+          a[2] = 7200000; //2 hr
+          a[3] = 10800000; //3 hr
 
       var yourDateToGo = new Date(); //here you're making new Date object
-      var i = submit + a[want]; //your're setting date in this object 1 day more from now
-    //you can change number of days to go by putting any number in place of 1
-                                      //var no = new Date();
-                                      //var future_1 = no.setHours(17);
-    // how to find diff time          //var past = no.setHours(14);
-                                      //var dif = future_1 - past
-                                      //console.log(dif);
-
-    var timing = setInterval( // you're making an interval - a thing, that is updating content after number of miliseconds, that you're writing after comma as second parameter
+      var i = submit + a[want]; //time out
+      // how to find diff time
+          //var no = new Date();
+          //var future_1 = no.setHours(17);
+          //var past = no.setHours(14);
+          //var dif = future_1 - past
+          //console.log(dif);
+    var timing = setInterval( //set dalay
       function () {
-        var currentDate = new Date().getTime(); //same thing as above
+        var currentDate = new Date().getTime();
         var diff = currentDate - submit;
         var timeLeft = i - (diff + submit); //difference between time you set and now in miliseconds
-        console.log(timeLeft, i, diff, submit, currentDate)
         var hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)); //conversion miliseconds on hours
         if (hours < 10) hours="0"+hours;
         var minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60)); //conversion miliseconds on minutes
@@ -118,8 +120,9 @@
           snapshot.forEach(function(childSnapshot){
             var childData = childSnapshot.val();
             let idtable = childData.table + childData.seat
+            dataRef.child(childSnapshot.key).remove() //remove data when time out
             dataseat.update({
-              [idtable]: 1
+              [idtable]: 1 // change seat to can book
             });
 
       });
