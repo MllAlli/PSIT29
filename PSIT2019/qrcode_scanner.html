@@ -47,7 +47,7 @@
                       <h5 class="card-title text-uppercase">QRcode Scanner</h5>
                       <button class="btn btn-block" id="btnScan">Scan Now
                       </button>
-                      <button type="button" class="btn btn-primary btn-block" data-toggle="collapse" data-target="#details">More Detail</button>
+                      <button type="button" class="btn btn-primary btn-block" data-toggle="collapse" data-target="#details">How to book your seat.</button>
                       <div id="details" class="collapse"><br>
                           <div class="card card-body" style="text-align: left;">
                             1. คลิก Scan Now เพื่อเปิดกล้อง<br>
@@ -84,6 +84,7 @@
 
   <!-- javascript script-->
   <script>
+  //QR scanner
     DWTQR("mycanvas");
     $("#btnScan").click(function(){
         dwStartScan();

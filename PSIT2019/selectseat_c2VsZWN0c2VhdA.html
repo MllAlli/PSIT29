@@ -100,9 +100,39 @@
 </style>
 
 <body>
+  <script>
+    window.addEventListener( "pageshow", function ( event ) {
+    var historyTraversal = event.persisted ||
+                         ( typeof window.performance != "undefined" &&
+                              window.performance.navigation.type === 2 );
+  if ( historyTraversal ) {
+    // Handle page restore.
+    window.location.reload();
+  }
+});
+  </script>
+    <!-- Navbar menu !-->
+          <div class="row">
+              <div class="col-md-12">
+                <nav class="navbar navbar-expand-sm bg-transparent navbar-light">
+                  <!-- Brand/logo -->
+                  <a class="navbar-brand" href="#"><img src="icon/table.png" style="width: 10%"></a>
+                  <ul class="navbar-nav mr-auto mt-2 mt-lg-0"></ul>
+                  <!-- Get user time -->
+                  <ul class="navbar-nav justify-content-end my-sm-0">
+                    <form class="form-inline my-3 my-lg-0">
+                        <label>Search your seat &nbsp</label>
+                        <input type="Phone Number" class="form-control mr-sm-2" id="phonelogin" placeholder="Phone Number">
+                        <a href="" class="btn btn-outline-primary my-2 my-sm-0" id="check">Submit</a>
+                    </form>
+                  </ul>
+                </nav>
+              </div>
+          </div>
+
     <!--Jumbotron-->
         <div class="row">
-          <div class="col-md-12 text-center" style="padding-top: 20vh; padding-bottom: 10vh;">
+          <div class="col-md-12 text-center" style="padding-top: 7vh; padding-bottom: 10vh;">
             <div class="text">
               <h1>ที่นั่งโซนอาหาร</h1>
             </div>
@@ -325,34 +355,13 @@
           </div>
         </div>
         <br><br><br>
-<!-- Check user sheet-->
-  <div class="container">
-      <div class="col-md-6">
-        <div class="card" style="background-color: transparent;">
-          <div class="card-body">
-            <h3 class="card-title">Check your time</h3>
-            <form>
-              <div class="form-row">
-                <label>Your Phone Number</label>
-              </div>
-              <div class="form-row">
-                <input type="Phone Number" class="form-control col-md-12" id="phonelogin" placeholder="Phone Number">
-              </div><br>
-              <div class="form-row">
-                <a href="" class="btn btn-primary" id="check">Submit</a>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-    <br>
+
         <!-- Sign up for reserve-->
         <div class="container">
           <div class="col-12">
               <div class="card" style="background-color: transparent;">
                   <div class="card-body">
-                    <form>
+                    <form action="" method="post" enctype="multipart/form-data" onSubmit="JavaScript:return fncSubmit();">
                           <div class="form-row">
                             <div class="col-12 col-md-6">
                                 <label>First Name</label>
@@ -380,28 +389,30 @@
                           <div class="form-row">
                               <div class="col-12 col-md-6">
                                   <label>Table</label>
-                                  <select class="form-control form-control" id="table">
-                                    <option>A1</option>
-                                    <option>A2</option>
-                                    <option>A3</option>
-                                    <option>B1</option>
-                                    <option>B2</option>
-                                    <option>B3</option>
-                                    <option>C1</option>
-                                    <option>C2</option>
-                                    <option>C3</option>
-                                    <option>D1</option>
-                                    <option>D2</option>
-                                    <option>D3</option>
+                                  <select class="form-control form-control" id="table" onchange="dosomething()">
+                                    <option disabled selected value="t0"> -- Select table -- </option>
+                                    <option id="ta1" value="A1">A1</option>
+                                    <option id="ta2" value="A2">A2</option>
+                                    <option id="ta3" value="A3">A3</option>
+                                    <option id="tb1" value="B1">B1</option>
+                                    <option id="tb2" value="B2">B2</option>
+                                    <option id="tb3" value="B3">B3</option>
+                                    <option id="tc1" value="C1">C1</option>
+                                    <option id="tc2" value="C2">C2</option>
+                                    <option id="tc3" value="C3">C3</option>
+                                    <option id="td1" value="D1">D1</option>
+                                    <option id="td2" value="D2">D2</option>
+                                    <option id="td3" value="D3">D3</option>
                                   </select>
                               </div>
                               <div class="col-md-6 col-12">
                                   <label>Seat</label>
                                   <select class="form-control form-control" id="seat">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
+                                    <option disabled selected value="s0"> -- Select a seat -- </option>
+                                    <option disabled id="s1">1</option>
+                                    <option disabled id="s2">2</option>
+                                    <option disabled id="s3">3</option>
+                                    <option disabled id="s4">4</option>
                                   </select>
                               </div>
                             </div>
@@ -445,17 +456,25 @@
   firebase.analytics();
 </script>
 <script>
+  //function : change color of seat when that seat is booked and time's up.
   function checking(seat) {
       if (seat == 0)  {
         return "#d9534f";
       } else {
         return "#5cb85c"
       }
-      }
+    }
 
   let myFirebase = firebase.database();
   let dataRef = myFirebase.ref('/listofuser');
   let dataseat = myFirebase.ref('tableandseat/table');
+  let datalist = [];
+  dataRef.on("value", function(snapshot){
+    snapshot.forEach(function(child){
+      datalist.push(child.val()['phone'])
+    });
+  });
+  //change color of seat when that seat is booked and time's up.
   dataseat.limitToLast(100).on("value", function(childSnapshot) {
     let item = childSnapshot.val();
     var word = ["A", "B", "C", "D"];
@@ -468,14 +487,13 @@
           }
         });
       });
-    
+  //call function checking when data is changed.
     dataseat.on("child_changed", function(snapshot){
         let aaaa = snapshot.key
-        console.log(aaaa);
            document.getElementById(aaaa).style.backgroundColor = checking(snapshot.val());
       });
-  
 
+//send data to firebase
   document.getElementById("submit").onclick = function() {
     let x = new Date();
     let hoursce = document.getElementById("hour");
@@ -492,6 +510,39 @@
     let nminute = x.getMinutes();
     let lnow = x.getTime();
     let idtable = strtable + strseat
+    //check user fill out all of form.
+    if (datalist.includes(lphone)) {
+      alert("Your phone number is already used.");
+      return false;
+    }
+    if(document.getElementById('firstname').value == "")
+    {
+        alert('Please input your name');
+        return false;
+    }
+    if(document.getElementById('lastname').value == "")
+    {
+        alert('Please input your lastname');
+        return false;
+    }
+    if(document.getElementById('phone').value == "")
+    {
+        alert('Please input your phone number');
+        return false;
+    }
+    if(document.getElementById("table").value == document.getElementById("table")[0].value)
+    {
+        alert('Please choose your table again');
+        return false;
+    }
+    if(document.getElementById("seat").value == document.getElementById("seat")[0].value)
+    {
+        alert('Please choose your seat again');
+        return false;
+    } else {
+      document.getElementById('submit').href = "timer.html?" + lphone;
+    }
+    //send data to firebase
     dataRef.push({
       firstname: lfirstname,
       lastname: llastname,
@@ -503,17 +554,33 @@
       miunte: nminute,
       now: lnow
     });
+    //update firebase that seat is booked.
     dataseat.update({
       [idtable]: 0
     })
-    document.getElementById("submit").href = "timer.html?" + lphone;
-
-
-
   };
+  //use phone number for check time.
   document.getElementById("check").onclick = function(){
     let num = document.getElementById("phonelogin").value;
     document.getElementById("check").href = "timer.html?" + num;
+  };
+
+  //disallow to book that seat.
+  function dosomething() {
+    document.getElementById("seat")[0].selected = true;
+    dataseat.on("value", function(snapshot){
+      value_snapshot = snapshot.val();
+      value = document.getElementById("table").value;
+      valuelist = []
+      for (var v = 1; v <= 4; ++v){
+        valuelist[v] = value + v;
+        if (value_snapshot[valuelist[v]] == 0){
+          document.getElementById("s"+v)  .disabled = true;
+        } else {
+          document.getElementById("s"+v).disabled = false;
+        }
+      }
+    });
   };
 </script>
 
