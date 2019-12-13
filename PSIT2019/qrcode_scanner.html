@@ -90,8 +90,15 @@
         dwStartScan();
     });
     function dwQRReader(data){
-        $("#txtData").val(data);
+      $("#txtData").val(data);
+      if(data == 'https://psit2019-t1.firebaseapp.com/selectseat_c2VsZWN0c2VhdA.html'){
         location.replace("selectseat_c2VsZWN0c2VhdA.html")
+      } else {
+        alert('Please scan again');
+      }
+      console.log(data);
+      //alert(data);
+      //location.replace("selectseat_c2VsZWN0c2VhdA.html")
     };
 
 </script>
