@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>จองที่นั่ง</title>
+    <title>จองที่นั่ง | หน้าแรก</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
@@ -85,9 +85,9 @@
         <!-- Navbar menu !-->
         <div class="row">
             <div class="col-md-12">
-              <nav class="navbar navbar-expand-sm bg-transparent navbar-light fixed-top">
+              <nav class="navbar navbar-expand-sm bg-transparent navbar-light ">
                 <!-- Brand/logo -->
-                <a class="navbar-brand" href="#"><h3>Logo</h3></a>
+                <a class="navbar-brand" href="#"><img src="icon/table.png" style="width: 10%"></a>
                 <ul class="navbar-nav mr-auto mt-2 mt-lg-0"></ul>
                 <!-- Button -->
                 <ul class="navbar-nav justify-content-end my-2 my-sm-0">
@@ -99,7 +99,7 @@
 
         <!--Jumbotron-->
         <div class="row">
-          <div class="col-md-12 text-center" style="padding-top: 20vh; padding-bottom: 10vh;">
+          <div class="col-md-12 text-center" style="padding-top: 10vh; padding-bottom: 10vh;">
             <div class="text">
               <h1>ที่นั่งโซนอาหาร</h1>
             </div>
@@ -325,7 +325,7 @@
         <!-- Footer -->
         <br><br>
         <footer class="footer text-center">
-            <p>Problem Solving in Information Technology 2019</p>  
+            <p>Problem Solving in Information Technology 2019</p>
         </footer>
         <!-- Footer -->
   <!-- The core Firebase JS SDK is always required and must be listed first -->
@@ -352,20 +352,22 @@
   firebase.analytics();
 </script>
 <script>
+  //function : change color of seat when that seat is booked and time's up.
       function checking(seat) {
       if (seat == 0)  {
         return "#d9534f";
       } else {
         return "#5cb85c"
       }
-      }
+    }
+
     let myFirebase = firebase.database();
     let dataRef = myFirebase.ref('/tableandseat');
     let dataseat = myFirebase.ref('/tableandseat/table');
     dataRef.limitToLast(100).on('child_added', function(childSnapshot) {
     let item = childSnapshot.val();
-    console.log(item)
-    
+
+  //change color of seat when that seat is booked and time's up.
     var word = ["A", "B", "C", "D"];
     word.forEach(element => {
       for (var i = 1; i < 4; i++) {
@@ -373,16 +375,16 @@
           let x = element+i+j;
           document.getElementById(x).style.backgroundColor = checking(eval("item."+x));
           }
-      }
+        }
+      });
     });
-    });
-    
+
+  //call function checking when data is changed.
     dataseat.on("child_changed", function(snapshot){
         let aaaa = snapshot.key
-        console.log(aaaa);
            document.getElementById(aaaa).style.backgroundColor = checking(snapshot.val());
   });
-    
+
 </script>
 
 </body>

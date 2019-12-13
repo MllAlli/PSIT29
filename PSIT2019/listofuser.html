@@ -30,24 +30,19 @@
     #btnScan{
         background-color: burlywood;
         }
-    footer{
-        position: fixed;
-        left: 0%;
-        bottom: 0%;
-        width: 100%;
-    }
+
 </style>
 
 <body>
   <br>
   <div class="container" id="app">
       <div class="row justify-content-center">
-          <!-- List of QRCode-->
+          <!-- List of Users-->
           <div class="col">
               <div class="card" style="min-height: 340px;">
                   <div class="card-body">
                       <h1 class="card-title">
-                        List of QRCode
+                        List of Users
                       </h1>
                       <table class="table table-hover">
                           <thead>
@@ -107,6 +102,7 @@
   firebase.analytics();
 </script>
 <script>
+  // pull data from firebase
     let myFirebase = firebase.database();
     let dataRef = myFirebase.ref('/listofuser');
     dataRef.limitToLast(100).on('child_added', function(childSnapshot) {
@@ -117,13 +113,14 @@
     if (end < 10) end = "0"+end
     document.getElementById('dataRow').innerHTML += "<tr><td>" + item.hour + ":" + item.miunte + "</td><td>" +
     item.firstname + "</td><td>" + item.lastname + "</td><td>" + item.phone + "</td><td>" +
-    item.table + "</td><td>" + item.seat + "</td><td>" + end + ":" + item.miunte +"</td></tr>"    
+    item.table + "</td><td>" + item.seat + "</td><td>" + end + ":" + item.miunte +"</td></tr>"
 });
-    
+
 </script>
+        <br>
         <!-- Footer -->
         <footer class="footer text-center">
-            <p>Problem Solving in Information Technology 2019</p>  
+            <p>Problem Solving in Information Technology 2019</p>
         </footer>
         <!-- Footer -->
 
