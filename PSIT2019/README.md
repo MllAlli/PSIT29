@@ -9,8 +9,8 @@
 
 ## Website ##
 
-ลิงก์ของเว็บไซต์ jeongtinung.คอม
-[https://psit2019-t1.firebaseapp.com/](https://psit2019-t1.firebaseapp.com/)
+ลิงก์ของเว็บไซต์ 
+[jeongtinung.คอม](https://psit2019-t1.firebaseapp.com/)
 
 เว็บไซต์ได้แบ่งเป็น 2 ส่วนหลัก ๆ ได้แก่
 
