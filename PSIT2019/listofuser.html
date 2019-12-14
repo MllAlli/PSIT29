@@ -108,9 +108,10 @@
     dataRef.limitToLast(100).on('child_added', function(childSnapshot) {
     let item = childSnapshot.val()
     let end = item.hour + item.want_hour;
-    if (item.hour < 10) item.hour = "0"+item.hour
-    if (item.miunte < 10) item.miunte = "0"+item.miunte
-    if (end < 10) end = "0"+end
+    if (item.hour < 10) item.hour = "0"+item.hour;
+    if (item.miunte < 10) item.miunte = "0"+item.miunte;
+    if (end < 10) end = "0"+end;
+    if (end >= 24) end = end - 24;
     document.getElementById('dataRow').innerHTML += "<tr><td>" + item.hour + ":" + item.miunte + "</td><td>" +
     item.firstname + "</td><td>" + item.lastname + "</td><td>" + item.phone + "</td><td>" +
     item.table + "</td><td>" + item.seat + "</td><td>" + end + ":" + item.miunte +"</td></tr>"
