@@ -2,11 +2,11 @@
 <html>
 <head>
     <title>จองที่นั่ง | COUNTDOWN TIMER</title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-        <script type="text/javascript" src="js/bootstrap.min.js"></script>
-        <link href="https://fonts.googleapis.com/css?family=Kanit&display=swap" rel="stylesheet">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Kanit&display=swap" rel="stylesheet">
 </head>
 <style>
   body{
@@ -20,17 +20,17 @@
     background-color: #DB3545;
   }
   footer{
-    position: fixed;
-   left: 0;
-   bottom: 0;
-   width: 100%;
-   text-align: center;
+     position: fixed;
+     left: 0;
+     bottom: 0;
+     width: 100%;
+     text-align: center;
   }
 </style>
 <body>
   <!-- countdown -->
     <div class="container">
-      <div class="row justify-content-center mt-5 mb-2" style="padding-top: 15vh;">
+      <div class="row justify-content-center mt-5 mb-2" style="padding-top: 10vh;">
         <h1>YOUR SEAT</h1>
       </div>
       <div class="row justify-content-center mt-5 mb-2">
@@ -43,10 +43,12 @@
       </div>
       <div class="container-fluid">
         <div class="row justify-content-center mt-4">
-          <div class="col-lg-7 d-flex justify-content-center form-control bg-success text-white" style="font-size: 47px" id="countdown"></div>
+          <div class="col-lg-7 d-flex justify-content-center form-control bg-success text-white sticky-bottom" style="font-size: 47px" id="countdown"></div>
         </div>
       </div>
     </div>
+    <br>
+    <br>
 
 
 <!-- javascript script-->
@@ -142,11 +144,14 @@
 });
 </script>
 
-  <!-- Footer -->
+  <!-- Footer-->
+  <div class="row">
+
   <footer class="footer text-center fixed-bottom">
       <p>Problem Solving in Information Technology 2019</p>
   </footer>
-  <!-- Footer -->
+
+
 
 </body>
 </html>
